@@ -1,0 +1,4 @@
+import {pageMetadata} from '@/lib/metadata';
+import {notFound} from 'next/navigation';import {publishers,books} from '@/lib/data';import {BookGrid} from '@/components/books';
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=publishers.find(p=>p.slug===slug);if(!p)notFound();return pageMetadata(p.name,'/publishers/'+slug,p?.description);}
+export default async function Page({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=publishers.find(p=>p.slug===slug);if(!p)notFound();return <section className="wrap section"><p className="eyebrow">PUBLISHER PROFILE · FICTIONAL DEMO</p><h1 className="page-title">{p.name}</h1><p className="intro">{p.description}</p><p>{p.country}</p><div className="section-heading"><h2>Books from {p.name}.</h2></div><BookGrid items={books.filter(b=>b.publisher_id===p.id)}/></section>}

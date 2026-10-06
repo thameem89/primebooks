@@ -1,0 +1,1 @@
+import {books,publishers} from '@/lib/data';export default function sitemap(){const base=process.env.SITE_URL||'http://localhost:3000';return ['','/books','/publishers','/distribution','/about','/contact','/register/publisher','/register/bookstore',...books.map(b=>'/books/'+b.slug),...publishers.map(p=>'/publishers/'+p.slug)].map(p=>({url:base+p}));}

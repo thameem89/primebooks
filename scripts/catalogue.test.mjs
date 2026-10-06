@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const {books,publishers}=JSON.parse(fs.readFileSync(new URL('../lib/catalogue.json',import.meta.url)));
+test('catalogue records have unique identifiers, valid publishers and local cover assets',()=>{assert.equal(new Set(books.map(b=>b.slug)).size,books.length);assert.ok(books.length>=12);assert.ok(publishers.length>=4);for(const b of books){assert.ok(publishers.some(p=>p.id===b.publisher_id));assert.ok(fs.existsSync(new URL('../public'+b.cover_image,import.meta.url)));assert.match(b.isbn,/^\d{13}$/);assert.ok(b.author_name&&b.author_bio&&b.description);}});
+test('fictional content is clearly identified and no purchase data is present',()=>{for(const b of books){assert.match(b.description,/fictional/i);assert.equal(b.price,null);assert.ok(!('cart' in b)&&!('payment' in b));}});

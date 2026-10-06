@@ -1,0 +1,1 @@
+export default function Loading(){return <div className='wrap section' role='status'>Opening the next chapter…</div>}

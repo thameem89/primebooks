@@ -1,0 +1,4 @@
+import {pageMetadata} from '@/lib/metadata';
+import EnquiryForm from '@/components/forms';import {books} from '@/lib/data';
+export const metadata=pageMetadata('Contact & enquiries',"/contact");
+export default async function Page({searchParams}:{searchParams:Promise<{book?:string}>}){const q=await searchParams;const b=books.find(b=>b.slug===q.book);return <section className="wrap section"><p className="eyebrow">A CONVERSATION STARTS HERE</p><h1 className="page-title">Let’s talk books.</h1><div className="form-layout"><div><p className="intro">Looking for a title, a distribution partner, or a new connection? Tell us what you have in mind.</p><h2>Contact PRIME</h2><p>Verified email, phone number, office address and business hours will be added when supplied by PRIME.</p><p className="demo-note">Contact information is awaiting confirmation.</p></div><EnquiryForm kind="contact" book={b?.id} bookTitle={b?.title}/></div></section>}

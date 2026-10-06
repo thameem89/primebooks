@@ -1,0 +1,2 @@
+import type {Metadata} from 'next';
+export function pageMetadata(title:string,route:string,description='Discover books, publishing and distribution with PRIME.'):Metadata{return {title,description,alternates:{canonical:new URL(route,process.env.SITE_URL||'http://localhost:3000').href},openGraph:{title:title+' | PRIME',description,url:new URL(route,process.env.SITE_URL||'http://localhost:3000').href}};}

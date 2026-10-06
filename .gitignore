@@ -1,0 +1,5 @@
+node_modules/
+.next/
+data/submissions/
+.env*
+*.tsbuildinfo
