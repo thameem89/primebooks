@@ -26,11 +26,13 @@ Open http://localhost:3000. For a production-mode local preview, run `npm run bu
 - `/robots.txt`, `/sitemap.xml` — preview indexing is disabled; sitemap and canonical URLs use `SITE_URL`, defaulting to localhost.
 - Custom 404, contact loading state and retryable error boundary.
 
-Page metadata includes unique titles, descriptions, canonical links and Open Graph data. Book pages include Book JSON-LD. Before public launch set `SITE_URL` and update indexing rules after replacing demonstration content.
+Page metadata includes unique titles, descriptions, canonical links and Open Graph data. Book pages include Book JSON-LD. Before public launch set `SITE_URL` and update indexing rules after confirming all public content.
 
 ## Catalogue and assets
 
-`lib/catalogue.json` contains 16 fictional books, 4 fictional publishers and associated author descriptions. The repository layer is `lib/data.ts`; it can be replaced with a real database API while retaining the UI. Search matches titles, authors, ISBNs, publishers, categories and descriptions. The generated local SVG covers are original placeholder artwork; no commercial covers were copied. The bookstore photograph is generated illustrative imagery and is labelled as such. It does not depict a PRIME location.
+`lib/catalogue.json` contains the 12 client-supplied children’s books, including both Arabic-language volumes. Covers are original supplied JPEGs in `public/images/books/`. Titles, age ranges, subtitles and descriptions come from visible front-cover information. Ten covers identify Wisdom Publishing LLC; the Arabic volumes have no confirmed publisher. Authors, ISBNs, exact page counts, publication years, prices and formats remain unset because they were not supplied. Availability is “Contact for Availability”.
+
+The repository layer is `lib/data.ts`; it can be replaced with a real database API while retaining the UI. Search matches titles, subtitles, authors, ISBNs, publishers, categories, descriptions and age ranges. The bookstore photograph remains generated illustrative imagery and is labelled as such. It does not depict a PRIME location.
 
 Prices are optional informational fields in the model and currently null. The implementation contains no cart, purchasing accounts, checkout, ordering, payment processing or independent-author platform.
 
@@ -59,6 +61,12 @@ No internal admin UI or authentication was configured. There are no public route
 
 ## Remaining PRIME content and configuration
 
-Supply real book covers, titles, ISBNs, metadata, author biographies and publisher information; approved company story, mission/vision and distribution regions; team and distributor photographs; verified phone/email, office address, business hours and social profiles; final legal copy; and backend/authentication/delivery configuration. Uploads and protected admin management remain future backend work.
+Supply missing ISBNs, bibliographic metadata, author biographies and publisher information for the Arabic volumes; approved company story, mission/vision and distribution regions; team and distributor photographs; verified phone/email, office address, business hours and social profiles; final legal copy; and backend/authentication/delivery configuration. Uploads and protected admin management remain future backend work.
 
 Typography uses Google Fonts with local Georgia/Arial fallbacks. The site does not currently include analytics or tracking.
+
+## Catalogue update — 15 October 2026
+
+Replaced the fictional catalogue with all 12 supplied cover images and cover-based details. Removed fictional authors, ISBNs, bibliographic metadata and publisher profiles. Both Arabic volumes remain separate records; their publisher is unconfirmed. The homepage, book pages, publisher pages, related books, search data, terms and structured data now use the supplied catalogue. Original covers are preserved without cropping.
+
+Verification: typecheck, lint, production build, 2 catalogue tests and 3 route/form integration tests passed. Browser search for “Arabic” returned both volumes. Twenty layout checks across home, catalogue, two book-detail pages and the Wisdom publisher page at 390, 430, 768 and 1440px found no overflow or broken loaded images. Browser console inspection showed no errors. The current preview uses port 3001 because another project occupies port 3000. This update has not been deployed.
